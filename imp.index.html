@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Связь с нами</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            background: #f5f5f5;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .btn {
+            width: 250px;
+            padding: 15px;
+            margin: 10px;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .btn i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        #viber { background: linear-gradient(45deg, #7360F2, #8A7BFF); }
+        #whatsapp { background: linear-gradient(45deg, #25D366, #5CFF8C); }
+        #telegram { background: linear-gradient(45deg, #0088CC, #00A8FF); }
+        #gmail { background: linear-gradient(45deg, #EA4335, #FF6B6B); }
+    </style>
+    <!-- Иконочный шрифт Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <h2>Выберите способ связи:</h2>
+    
+    <button class="btn" id="viber" onclick="openApp('viber')">
+        <i class="fab fa-viber"></i> Viber
+    </button>
+    
+    <button class="btn" id="whatsapp" onclick="openApp('whatsapp')">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+    </button>
+    
+    <button class="btn" id="telegram" onclick="openApp('telegram')">
+        <i class="fab fa-telegram-plane"></i> Telegram
+    </button>
+    
+    <button class="btn" id="gmail" onclick="openApp('gmail')">
+        <i class="far fa-envelope"></i> Gmail
+    </button>
+
+    <script>
+        const contacts = {
+            viber: {
+                app: 'viber://chat?number=+37360606601',
+                web: 'https://www.viber.com/download/'
+            },
+            whatsapp: {
+                app: 'https://wa.me/+37360606601',
+                web: 'https://web.whatsapp.com/send?phone=37360606601'
+            },
+            telegram: {
+                app: 'tg://resolve?domain=magicton15',
+                web: 'https://t.me/magicton15'
+            },
+            gmail: {
+                app: 'mailto:imprimare01@gmail.com',
+                web: 'https://mail.google.com/mail/?view=cm&to=imprimare01@gmail.com'
+            }
+        };
+
+        function openApp(service) {
+            const link = contacts[service];
+            const appWindow = window.open(link.app, '_blank');
+            
+            if (navigator.userAgent.match(/Mobile/)) {
+                setTimeout(() => {
+                    if (!appWindow || appWindow.closed) {
+                        window.location.href = link.web;
+                    }
+                }, 500);
+            } else {
+                window.location.href = link.web;
+            }
+        }
+    </script>
+</body>
+</html>
